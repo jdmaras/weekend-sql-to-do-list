@@ -10,3 +10,7 @@ VALUES ('Bathroom', 'Saturday', 2),
 ('Laundry Room', 'Sunday', 2);
 
 SELECT * FROM "tasks";
+
+INSERT INTO "tasks"
+("clean","day","hours_alotted")
+VALUES ($1, $2, $3);

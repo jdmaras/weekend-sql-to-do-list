@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="vendors/jquery-3.6.0.min.js"></script>
     <script src="scripts/client.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <title>CLEANING TO DO LIST</title>
-</head>
-<body>
-    <H1>Cleaning To Do List</H1>
+  </head>
+  <body>
+    <h1>Cleaning To Do List</h1>
     <div id="inputDiv">
-        <table>
-            <div >
-                What To Clean: <input type="text" id="whatYouClean" placeholder="What spot?"><br>
-                What Day You Clean: <input type="text" id="dayYouClean" placeholder="Sat? Sunday?"><br>
-                Time It Might Take: <input type="number" id="hoursYouClean" placeholder="Time In Hours"><br>
-            </div>
-            <button type="submit" id="submitButton">SUBMIT</button>
-        </table>
+      <table>
+        <div>
+          What To Clean:
+          <input type="text" id="whatYouClean" placeholder="What spot?" /><br />
+          What Day You Clean:
+          <input
+            type="text"
+            id="dayYouClean"
+            placeholder="Sat? Sunday?"
+          /><br />
+          Time It Might Take:
+          <input
+            type="number"
+            id="hoursYouClean"
+            placeholder="Time In Hours"
+          /><br />
+        </div>
+        <button type="submit" id="submitButton">SUBMIT</button>
+      </table>
     </div>
     <div id="outputDiv">
-        <table>
-            <tbody id="taskList"></tbody>
-            
-        </table>
+      <table>
+        <th>What You Clean</th>
+        <th>What Day</th>
+        <th>Hours To Complete</th>
+        <tbody id="taskList"></tbody>
+      </table>
     </div>
-</body>
+  </body>
 </html>
