@@ -8,3 +8,5 @@ INSERT INTO "tasks" ("clean", "day", "hours_alotted")
 VALUES ('Bathroom', 'Saturday', 2),
 ('Hallway', 'Saturday', 1),
 ('Laundry Room', 'Sunday', 2);
+
+SELECT * FROM "tasks";

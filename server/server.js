@@ -10,11 +10,12 @@ app.use(bodyParser.json());
 
 
 app.get(`/tasks`, (req, res) => {
-    console.log( `in /tasks GET`);
+    //console.log( `in /tasks GET`);
     const query = `
     SELECT * FROM "tasks";
     `;
     pool.query(query).then ((results) => {
+        console.log(results.rows)
         res.send(results.rows);
     }).catch ((err) => {
         console.log( `ERROR with GET:`, err);
