@@ -3,6 +3,7 @@ $(document).ready(clickListeners);
 function clickListeners() {
   //console.log(`This JQ is working`);
   $(`#submitButton`).on(`click`, addToList);
+  $(`#taskList`).on(`click`, `.deleteTaskBtn`, deleteTasks);
   getTasks();
 }
 
@@ -66,8 +67,21 @@ function appendTaskList(tasks) {
   }
 }
 
-// let el = $(`#taskList`);
-//         //el.empty();
-//         for (let i = 0; i < response.length; i++){
-//             el.append(`<li>${response[i].clean}</li>`)
-//         }
+// DELETE IS COMING BACK UNDEFINED. LOOK BACK AT THE TR BECAUSE PROBABY NOT TARGETTING
+// WHAT IT NEEDS TO BE
+
+function deleteTasks() {
+  let idOfTask = $(this).parents("tr").data(`task-id`);
+
+  $.ajax({
+    method: "DELETE",
+    url: `/tasks/${idOfTask}`,
+  })
+    .then(() => {
+      console.log(`DELETE CONNECTED`);
+      getTasks();
+    })
+    .catch((err) => {
+      console.log(`DELETE failed`, err);
+    });
+}

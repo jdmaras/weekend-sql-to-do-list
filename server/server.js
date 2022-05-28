@@ -44,6 +44,26 @@ app.post(`/tasks`, (req, res) => {
     });
 });
 
+app.delete(`/:tasks`, (req, res) => {
+  console.log("app.delete", req.params.tasks);
+
+  const sqlQuery = `
+    DELETE FROM "tasks"
+    WHERE "id" = $1;
+    `;
+  const sqlParams = [req.params.tasks];
+  pool
+    .query(sqlQuery, sqlParams)
+    .then(() => {
+      console.log(`in delete pool.query.then`);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`DELETE failed`, err);
+      res.sendStatus(500);
+    });
+});
+
 app.listen(port, () => {
   console.log(`I'M READY - SPONGEBOB PORT`, port);
 });
