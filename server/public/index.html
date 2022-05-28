@@ -6,9 +6,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>CLEANING TO DO LIST</title>
 </head>
 <body>
-    
+    <H1>Cleaning To Do List</H1>
+    <div id="inputDiv">
+        <table>
+            <div >
+                What To Clean: <input type="text" id="whatYouClean" placeholder="What spot?"><br>
+                What Day You Clean: <input type="text" id="dayYouClean" placeholder="Sat? Sunday?"><br>
+                Time It Might Take: <input type="number" id="hoursYouClean" placeholder="Time In Hours"><br>
+            </div>
+            <button type="submit" id="submitButton">SUBMIT</button>
+        </table>
+    </div>
+    <div id="outputDiv">
+        <ul id="taskList">
+            
+        </ul>
+    </div>
 </body>
 </html>
