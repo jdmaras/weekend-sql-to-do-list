@@ -20,7 +20,7 @@ router.get(`/`, (req, res) => {
 });
 
 router.post(`/`, (req, res) => {
-  console.log(`POST /items`, req.body);
+  //console.log(`POST /items`, req.body);
   const query = `
     INSERT INTO "tasks"
     ("clean","day","hours_alotted", "job_done")
@@ -73,7 +73,7 @@ router.put(`/:tasks`, (req, res) => {
   SET "job_done" = $5
   WHERE "id" = $1;
   `;
-  const sqlParams = [req.params.deleteTasks, req.body.job_done];
+  const sqlParams = [req.params.tasks, req.body.job_done];
   pool
     .query(sqlQuery, sqlParams)
     .then(() => {

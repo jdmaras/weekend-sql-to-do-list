@@ -4,6 +4,7 @@ function clickListeners() {
   //console.log(`This JQ is working`);
   $(`#submitButton`).on(`click`, addToList);
   $(`#taskList`).on(`click`, `#deleteTaskBtn`, deleteTasks);
+  $(`#taskList`).on(`click`, `.completeBtn`, updateJobDone);
   getTasks();
 }
 
@@ -59,7 +60,7 @@ function appendTaskList(tasks) {
           <td>${task.hours_alotted}</td>
           <td>${task.job_done}</td>
           <td>
-              <button class="completeBtn">${task.job_done}</button>
+          <button class="completeBtn">IS THE JOB DONE</button>
           </td>
           <td>
               <button id="deleteTaskBtn">MAYBE NEXT WEEK</button>
@@ -68,6 +69,7 @@ function appendTaskList(tasks) {
       `);
   }
 }
+//<button class="completeBtn">${task.job_done}</button>
 
 function updateJobDone() {
   let idOfTask = $(this).parents("tr").data(`task-id`);
