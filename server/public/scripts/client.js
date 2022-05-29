@@ -13,6 +13,7 @@ function addToList(e) {
     clean: $(`#whatYouClean`).val(),
     day: $(`#dayYouClean`).val(),
     hours_alotted: $(`#hoursYouClean`).val(),
+    job_done: $(`#isJobDone`).val(),
   };
   console.log(`What I'm adding`, tasksBeingSent);
   $.ajax({
@@ -56,8 +57,9 @@ function appendTaskList(tasks) {
           <td>${task.clean}</td>
           <td>${task.day}</td>
           <td>${task.hours_alotted}</td>
+          <td>${task.job_done}</td>
           <td>
-              <button id="completeBtn">JOB DONE</button>
+              <button class="completeBtn">${task.job_done}</button>
           </td>
           <td>
               <button id="deleteTaskBtn">MAYBE NEXT WEEK</button>
@@ -67,8 +69,35 @@ function appendTaskList(tasks) {
   }
 }
 
-// DELETE IS COMING BACK UNDEFINED. LOOK BACK AT THE TR BECAUSE PROBABY NOT TARGETTING
-// WHAT IT NEEDS TO BE
+function updateJobDone() {
+  let idOfTask = $(this).parents("tr").data(`task-id`);
+
+  let updateToDoList;
+
+  if ($(this).parents(`tr`).children(`.completeBtn`).text() === "N") {
+    updateToDoList = { job_done: "Y" };
+  } else if ($(this).parents(`tr`).children(`.completeBtn`).text() === "Y") {
+    updateToDoList = {
+      job_done: "N",
+    };
+  } else {
+    console.log(`Job Done Button BROKE`);
+  }
+  console.log(`We now update the to do list`, updateToDoList);
+  $.ajax({
+    method: "PUT",
+    url: `/tasks/${idOfTask}`,
+    data: updateToDoList,
+  })
+    .then((res) => {
+      console.log(`PUT transfer updated!`);
+      getTasks();
+    })
+    .catch((err) => {
+      console.log(`the PUT failed`, err);
+      alert(`IT FAILED`);
+    });
+}
 
 function deleteTasks() {
   let idOfTask = $(this).parents("tr").data(`task-id`);
