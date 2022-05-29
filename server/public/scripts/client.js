@@ -58,9 +58,9 @@ function appendTaskList(tasks) {
           <td>${task.clean}</td>
           <td>${task.day}</td>
           <td>${task.hours_alotted}</td>
-          <td>${task.job_done}</td>
+          <td class="taskJobDone">${task.job_done}</td>
           <td>
-          <button class="completeBtn">IS THE JOB DONE</button>
+              <button class="completeBtn">IS THE JOB DONE</button>
           </td>
           <td>
               <button id="deleteTaskBtn">MAYBE NEXT WEEK</button>
@@ -76,16 +76,16 @@ function updateJobDone() {
 
   let updateToDoList;
 
-  if ($(this).parents(`tr`).children(`.completeBtn`).text() === "N") {
+  if ($(this).parents(`tr`).children(`.taskJobDone`).text() === "N") {
     updateToDoList = { job_done: "Y" };
-  } else if ($(this).parents(`tr`).children(`.completeBtn`).text() === "Y") {
+  } else if ($(this).parents(`tr`).children(`.taskJobDone`).text() === "Y") {
     updateToDoList = {
       job_done: "N",
     };
   } else {
     console.log(`Job Done Button BROKE`);
   }
-  console.log(`We now update the to do list`, updateToDoList);
+  console.log(`We now update the to do list`, updateToDoList.job_done);
   $.ajax({
     method: "PUT",
     url: `/tasks/${idOfTask}`,
