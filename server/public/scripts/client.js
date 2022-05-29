@@ -3,7 +3,7 @@ $(document).ready(clickListeners);
 function clickListeners() {
   //console.log(`This JQ is working`);
   $(`#submitButton`).on(`click`, addToList);
-  $(`#taskList`).on(`click`, `.deleteTaskBtn`, deleteTasks);
+  $(`#taskList`).on(`click`, `#deleteTaskBtn`, deleteTasks);
   getTasks();
 }
 
@@ -22,7 +22,7 @@ function addToList(e) {
   })
     .then((response) => {
       console.log(`POST is sending this back:`, response);
-      //getTasks();
+      getTasks();
     })
     .catch((err) => {
       alert(`ERROR adding item`, err);
@@ -57,10 +57,10 @@ function appendTaskList(tasks) {
           <td>${task.day}</td>
           <td>${task.hours_alotted}</td>
           <td>
-              <button class="completeBtn">JOB DONE</button>
+              <button id="completeBtn">JOB DONE</button>
           </td>
           <td>
-              <button class="deleteTaskBtn">MAYBE NEXT WEEK</button>
+              <button id="deleteTaskBtn">MAYBE NEXT WEEK</button>
           </td>
         </tr>
       `);
@@ -72,7 +72,7 @@ function appendTaskList(tasks) {
 
 function deleteTasks() {
   let idOfTask = $(this).parents("tr").data(`task-id`);
-
+  console.log(`idOfTask is`, idOfTask);
   $.ajax({
     method: "DELETE",
     url: `/tasks/${idOfTask}`,
@@ -82,6 +82,6 @@ function deleteTasks() {
       getTasks();
     })
     .catch((err) => {
-      console.log(`DELETE failed`, err);
+      console.log(`DELETE failed - client side`, err);
     });
 }
