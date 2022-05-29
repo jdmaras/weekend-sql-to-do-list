@@ -46,7 +46,7 @@ router.post(`/`, (req, res) => {
 
 router.delete(`/:deleteTasks`, (req, res) => {
   let testing = req.params.deleteTasks;
-  console.log("app.delete", req.params.deleteTasks);
+  //console.log("app.delete", testing);
 
   const sqlQuery = `
           DELETE FROM "tasks"
@@ -70,10 +70,12 @@ router.put(`/:tasks`, (req, res) => {
 
   const sqlQuery = `
   UPDATE "tasks"
-  SET "job_done" = $5
+  SET "job_done" = $2
   WHERE "id" = $1;
   `;
+  //I tried $4 here but I don't understand why I had to set it to $2
   const sqlParams = [req.params.tasks, req.body.job_done];
+  console.log(req.params.tasks, req.params.job_done);
   pool
     .query(sqlQuery, sqlParams)
     .then(() => {
