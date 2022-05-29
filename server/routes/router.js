@@ -23,10 +23,15 @@ router.post(`/`, (req, res) => {
   console.log(`POST /items`, req.body);
   const query = `
     INSERT INTO "tasks"
-    ("clean","day","hours_alotted")
-    VALUES ($1, $2, $3);
+    ("clean","day","hours_alotted", "job_done")
+    VALUES ($1, $2, $3, $4);
     `;
-  const sqlParams = [req.body.clean, req.body.day, req.body.hours_alotted];
+  const sqlParams = [
+    req.body.clean,
+    req.body.day,
+    req.body.hours_alotted,
+    req.body.job_done,
+  ];
   pool
     .query(query, sqlParams)
     .then((results) => {
@@ -60,10 +65,24 @@ router.delete(`/:deleteTasks`, (req, res) => {
     });
 });
 
-app.put(`/:tasks`, (req, res) => {
-  console.log (` in the router PUT`);
+router.put(`/:tasks`, (req, res) => {
+  console.log(` in the router PUT`);
 
-  const sqlQuery = 
-})
+  const sqlQuery = `
+  UPDATE "tasks"
+  SET "job_done" = $5
+  WHERE "id" = $1;
+  `;
+  const sqlParams = [req.params.deleteTasks, req.body.job_done];
+  pool
+    .query(sqlQuery, sqlParams)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`PUT updated failed`, err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
