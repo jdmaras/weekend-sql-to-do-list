@@ -4,6 +4,9 @@
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+[ ] - Init - Install Express, body-parser, NODEMON, pg , jQuery
+[ ] - Setup files the way we have been shown
+_NOTE_ Be VERY careful to see how they are nested
+[ ] - Setup Database and draw out what you
+want this to all look like on front
+end.

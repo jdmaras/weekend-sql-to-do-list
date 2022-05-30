@@ -33,6 +33,7 @@ function addToList(e) {
   //console.log(`This ADDS to list`)
 }
 
+// Getting DB info from server
 function getTasks() {
   $.ajax({
     type: "GET",
@@ -47,12 +48,15 @@ function getTasks() {
       alert(`error GETting list`, err);
     });
 }
+
+//appending data to DOM
 function appendTaskList(tasks) {
   //empty old data
   $("#taskList").empty();
   for (let task of tasks) {
     //console.log(tasks);
     //append row to table
+    //data-task allows you to attach to specific id in row of
     $("#taskList").append(`
         <tr data-task-id="${task.id}">
           <td>${task.clean}</td>

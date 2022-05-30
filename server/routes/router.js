@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
+//this is how your database is coming in
 
 router.get(`/`, (req, res) => {
   //console.log( `in /tasks GET`);
@@ -10,7 +11,7 @@ router.get(`/`, (req, res) => {
   pool
     .query(query)
     .then((results) => {
-      console.log(results.rows);
+      //console.log(results.rows);
       res.send(results.rows);
     })
     .catch((err) => {
@@ -38,7 +39,7 @@ router.post(`/`, (req, res) => {
   pool
     .query(query, sqlParams)
     .then((results) => {
-      console.log(`POST WENT THROUGH`);
+      //console.log(`POST WENT THROUGH`, results);
       res.sendStatus(201);
     })
     .catch((err) => {
@@ -49,7 +50,7 @@ router.post(`/`, (req, res) => {
 
 router.delete(`/:deleteTasks`, (req, res) => {
   let testing = req.params.deleteTasks;
-  //console.log("app.delete", testing);
+  //console.log("router.delete", testing);
 
   const sqlQuery = `
           DELETE FROM "tasks"
@@ -88,7 +89,7 @@ router.put(`/:tasks`, (req, res) => {
   pool
     .query(sqlQuery, sqlParams)
     .then(() => {
-      res.sendStatus(201);
+      res.sendStatus(200);
     })
     .catch((err) => {
       console.log(`PUT updated failed`, err);
