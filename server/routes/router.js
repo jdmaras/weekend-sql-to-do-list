@@ -26,6 +26,9 @@ router.post(`/`, (req, res) => {
     ("clean","day","hours_alotted", "job_done")
     VALUES ($1, $2, $3, $4);
     `;
+
+  //setting what each of the headers of the database are
+  // making them equal to values to scrub
   const sqlParams = [
     req.body.clean,
     req.body.day,
@@ -52,6 +55,8 @@ router.delete(`/:deleteTasks`, (req, res) => {
           DELETE FROM "tasks"
           WHERE "id" = $1;
           `;
+
+  //scrubbing the tasks when deleting
   const sqlParams = [testing];
   pool
     .query(sqlQuery, sqlParams)
@@ -74,6 +79,10 @@ router.put(`/:tasks`, (req, res) => {
   WHERE "id" = $1;
   `;
   //I tried $4 here but I don't understand why I had to set it to $2
+  // I thought that the numbers generally lined up with
+  // what I made them equal to up in the POST or does
+  // that not really matter because they are scoped to
+  // that post?
   const sqlParams = [req.params.tasks, req.body.job_done];
   console.log(req.params.tasks, req.params.job_done);
   pool
