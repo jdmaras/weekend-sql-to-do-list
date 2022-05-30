@@ -85,6 +85,8 @@ function updateJobDone() {
   } else {
     console.log(`Job Done Button BROKE`);
   }
+  //setting up if or elses has been one of my not strong suits
+  // this one worked the same from our Koala group project
   console.log(`We now update the to do list`, updateToDoList.job_done);
   $.ajax({
     method: "PUT",
